@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\assests\\5-10-2023\\FileUpload\\FileUpload\\FileUpload.csproj": {}
+    "D:\\upload\\FileUpload\\FileUpload.csproj": {}
   },
   "projects": {
-    "D:\\assests\\5-10-2023\\FileUpload\\FileUpload\\FileUpload.csproj": {
+    "D:\\upload\\FileUpload\\FileUpload.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\assests\\5-10-2023\\FileUpload\\FileUpload\\FileUpload.csproj",
+        "projectUniqueName": "D:\\upload\\FileUpload\\FileUpload.csproj",
         "projectName": "FileUpload",
-        "projectPath": "D:\\assests\\5-10-2023\\FileUpload\\FileUpload\\FileUpload.csproj",
-        "packagesPath": "C:\\Users\\Yuvaraj\\.nuget\\packages\\",
-        "outputPath": "D:\\assests\\5-10-2023\\FileUpload\\FileUpload\\obj\\",
+        "projectPath": "D:\\upload\\FileUpload\\FileUpload.csproj",
+        "packagesPath": "C:\\Users\\Tarun\\.nuget\\packages\\",
+        "outputPath": "D:\\upload\\FileUpload\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Yuvaraj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Tarun\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -67,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
