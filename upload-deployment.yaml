@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: upload-deployment
+  namespace: bolx
+  labels:
+    app: bolxwmsdev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bolxwmsdev
+  template:
+    metadata:
+      labels:
+        app: bolxwmsdev
+    spec:
+      containers:
+      - name: bolxwms
+        image: aravindaravind/fileupload-app:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: /app/wwwroot/upload
+          name: file-upload-volume
+      initContainers:
+      - name: init-file-upload
+        image: aravindaravind/fileupload-app:1.0
+        command: ['sh', '-c', 'cp -r /app/wwwroot/upload/* /mnt/upload']
+        volumeMounts:
+        - mountPath: /mnt/upload
+          name: file-upload-volume
+      volumes:
+      - name: file-upload-volume
+        persistentVolumeClaim:
+          claimName: file-upload-pvc
+      imagePullSecrets:
+      - name: dockerhub
