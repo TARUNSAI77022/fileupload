@@ -39,4 +39,4 @@ spec:
           claimName: file-upload-pvc
       - name: jenkins-workspace-volume
         hostPath:
-          path: /var/lib/jenkins/workspace
+          path: /var/lib/jenkins/workspace/kube/FileUpload/wwwroot/upload/
