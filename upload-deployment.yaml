@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: bolxwms
-        image: aravindaravind/fileupload-app:latest
+        image: aravindaravind/fileupload-app:1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
