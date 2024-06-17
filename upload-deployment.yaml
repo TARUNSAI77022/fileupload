@@ -15,6 +15,8 @@ spec:
       labels:
         app: bolxwmsdev
     spec:
+      imagePullSecrets:
+      - name: dockerhub
       initContainers:
       - name: init-file-upload
         image: busybox
