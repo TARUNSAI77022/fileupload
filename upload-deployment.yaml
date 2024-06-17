@@ -18,13 +18,11 @@ spec:
       initContainers:
       - name: init-file-upload
         image: busybox
-        command: ['sh', '-c', 'mkdir -p /mnt/upload && cp -r /workspace/* /mnt/upload && cp -r /app/wwwroot/upload/* /mnt/upload']
+        command: ['sh', '-c', 'cp -r /workspace/* /app/wwwroot/upload']
         volumeMounts:
         - mountPath: /workspace
           name: jenkins-workspace-volume
         - mountPath: /app/wwwroot/upload
-          name: file-upload-volume
-        - mountPath: /mnt/upload
           name: file-upload-volume
       containers:
       - name: bolxwms
@@ -42,5 +40,3 @@ spec:
       - name: jenkins-workspace-volume
         hostPath:
           path: /var/lib/jenkins/workspace/kube/FileUpload/wwwroot/upload/
-      imagePullSecrets:
-      - name: dockerhub
