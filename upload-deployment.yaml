@@ -18,7 +18,7 @@ spec:
       initContainers:
       - name: init-file-upload
         image: busybox
-        command: ['sh', '-c', 'cp -r /mnt/upload/* /app/wwwroot/upload/ || true']
+        command: ['sh', '-c', 'cp -r /mnt/upload/* /app/wwwroot/upload/']
         volumeMounts:
         - mountPath: /mnt/upload
           name: persistent-upload-volume
@@ -29,7 +29,7 @@ spec:
         image: aravindaravind/fileupload-app:1.0
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         volumeMounts:
         - mountPath: /app/wwwroot/upload
           name: app-upload-volume
@@ -38,7 +38,6 @@ spec:
         persistentVolumeClaim:
           claimName: file-upload-pvc
       - name: app-upload-volume
-        hostPath:
-          path: /home/ubuntu/kub-volume
+        emptyDir: {}
       imagePullSecrets:
       - name: dockerhub
