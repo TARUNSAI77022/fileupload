@@ -15,15 +15,6 @@ spec:
       labels:
         app: bolxwmsdev
     spec:
-      initContainers:
-      - name: init-file-upload
-        image: busybox
-        command: ['sh', '-c', 'cp -r /var/lib/jenkins/workspace/kube/FileUpload/wwwroot/upload/* /app/wwwroot/upload']
-        volumeMounts:
-        - mountPath: /var/lib/jenkins/workspace/kube/FileUpload/wwwroot/upload/
-          name: jenkins-workspace-volume
-        - mountPath: /app/wwwroot/upload
-          name: file-upload-volume
       containers:
       - name: bolxwms
         image: aravindaravind/fileupload-app:1.0
@@ -33,6 +24,12 @@ spec:
         volumeMounts:
         - mountPath: /app/wwwroot/upload
           name: file-upload-volume
+      - name: sync-container
+        image: busybox
+        command: ['sh', '-c', 'while true; do cp -r /workspace/* /app/wwwroot/upload/ && sleep 60; done']
+        volumeMounts:
+        - mountPath: /workspace
+          name: jenkins-workspace-volume
       volumes:
       - name: file-upload-volume
         persistentVolumeClaim:
@@ -40,3 +37,5 @@ spec:
       - name: jenkins-workspace-volume
         hostPath:
           path: /var/lib/jenkins/workspace/kube/FileUpload/wwwroot/upload/
+      imagePullSecrets:
+      - name: dockerhub
