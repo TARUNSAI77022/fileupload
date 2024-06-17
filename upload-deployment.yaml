@@ -18,9 +18,9 @@ spec:
       initContainers:
       - name: init-file-upload
         image: busybox
-        command: ['sh', '-c', 'cp -r /workspace/* /mnt/upload && cp -r /app/wwwroot/upload/* /mnt/upload']
+        command: ['sh', '-c', 'cp -r /var/lib/jenkins/workspace/* /mnt/upload && cp -r /app/wwwroot/upload/* /mnt/upload']
         volumeMounts:
-        - mountPath: /workspace
+        - mountPath: /var/lib/jenkins/workspace
           name: jenkins-workspace-volume
         - mountPath: /app/wwwroot/upload
           name: file-upload-volume
