@@ -31,7 +31,7 @@ spec:
         image: aravindaravind/fileupload-app:1.0
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         volumeMounts:
         - mountPath: /app/wwwroot/upload
           name: file-upload-volume
