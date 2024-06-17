@@ -2,9 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: upload-deployment
-  namespace: bolx
-  labels:
-    app: bolxwmsdev
 spec:
   replicas: 3
   selector:
@@ -16,26 +13,14 @@ spec:
         app: bolxwmsdev
     spec:
       containers:
-      - name: bolxwms
-        image: aravindaravind/fileupload-app:1.0
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 80
-        volumeMounts:
-        - mountPath: /app/wwwroot/upload
-          name: file-upload-volume
-      - name: sync-container
-        image: busybox
-        command: ['sh', '-c', 'while true; do cp -r /workspace/* /app/wwwroot/upload/ && sleep 60; done']
-        volumeMounts:
-        - mountPath: /workspace
-          name: jenkins-workspace-volume
+        - name: bolxwms
+          image: aravindaravind/fileupload-app:1.0
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: "/app/wwwroot/upload"
+              name: file-upload-volume
       volumes:
-      - name: file-upload-volume
-        persistentVolumeClaim:
-          claimName: file-upload-pvc
-      - name: jenkins-workspace-volume
-        hostPath:
-          path: /var/lib/jenkins/workspace/kube/FileUpload/wwwroot/upload/
-      imagePullSecrets:
-      - name: dockerhub
+        - name: file-upload-volume
+          persistentVolumeClaim:
+            claimName: file-upload-pvc
