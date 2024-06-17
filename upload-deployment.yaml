@@ -26,10 +26,10 @@ spec:
           name: file-upload-volume
       containers:
       - name: bolxwms
-        image: aravindaravind/fileupload-app:1.0
+        image: aravindaravind/fileupload-app:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080
+        - containerPort: 80
         volumeMounts:
         - mountPath: /app/wwwroot/upload
           name: file-upload-volume
