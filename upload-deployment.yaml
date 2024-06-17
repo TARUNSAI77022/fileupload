@@ -13,17 +13,16 @@ spec:
         app: bolxwmsdev
     spec:
       containers:
-        - name: bolxwms
-          image: aravindaravind/fileupload-app:1.0
-          ports:
-            - containerPort: 80
-          volumeMounts:
-            - mountPath: "/app/wwwroot/upload"
-              name: file-upload-volume
+      - name: bolxwms
+        image: aravindaravind/fileupload-app:1.0
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: "/app/wwwroot/upload"
+          name: file-upload-volume
       volumes:
-        - name: file-upload-volume
-          persistentVolumeClaim:
-            claimName: file-upload-pvc
-     imagePullSecrets:
-        - name: dockerhub
-      
+      - name: file-upload-volume
+        persistentVolumeClaim:
+          claimName: file-upload-pvc
+      imagePullSecrets:
+      - name: dockerhub
