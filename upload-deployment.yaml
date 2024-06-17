@@ -24,3 +24,6 @@ spec:
         - name: file-upload-volume
           persistentVolumeClaim:
             claimName: file-upload-pvc
+     imagePullSecrets:
+        - name: dockerhub
+      
