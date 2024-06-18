@@ -17,7 +17,7 @@ spec:
     spec:
       initContainers:
       - name: init-file-upload
-        image: aravindaravind/fileupload-app:1.0
+        image: busybox
         command: ['sh', '-c', 'cp -r /app/wwwroot/upload/* /mnt/upload']
         volumeMounts:
         - mountPath: /mnt/upload
@@ -25,7 +25,7 @@ spec:
         - mountPath: /app/wwwroot/upload
           name: app-upload-volume
       - name: copy-back-files
-        image: busybox
+        image: aravindaravind/fileupload-app:1.0
         command: ['sh', '-c', 'cp -r /mnt/upload/* /app/wwwroot/upload/']
         volumeMounts:
         - mountPath: /mnt/upload
