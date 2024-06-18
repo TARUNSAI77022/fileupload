@@ -5,6 +5,3 @@ metadata:
   namespace: bolx
 provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: Immediate
-#reclaimPolicy: Retain
-#reclaimPolicy: Delete
-
