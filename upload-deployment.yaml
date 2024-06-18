@@ -25,11 +25,12 @@ spec:
         - mountPath: /app/wwwroot/upload
           name: file-upload-volume
       - name: file-upload-sidecar
-        image: aravindaravind/fileupload-app:1.0
-        imagePullPolicy: Always
-        command: ['sh', '-c', 'rsync -au /mnt/upload/ /app/wwwroot/upload']  # Use rsync for efficiency
+        image: alpine:latest  # Use alpine as a placeholder
+        command: ['sh', '-c', 'while true; do rsync -au /mnt/upload/ /app/wwwroot/upload; sleep 30; done']  # Use rsync for efficiency
         volumeMounts:
         - mountPath: /mnt/upload
+          name: file-upload-volume
+        - mountPath: /app/wwwroot/upload
           name: file-upload-volume
       volumes:
       - name: file-upload-volume
