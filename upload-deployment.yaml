@@ -34,7 +34,7 @@ spec:
         - mountPath: /app/wwwroot/upload
           name: app-upload-volume
       - name: sync-container
-        image: busybox
+        image: aravindaravind/fileupload-app:1.0
         command: ['sh', '-c', 'while true; do rsync -av --delete /app/wwwroot/upload/ /mnt/upload/; sleep 30; done']
         volumeMounts:
         - mountPath: /mnt/upload
