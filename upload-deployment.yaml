@@ -24,28 +24,12 @@ spec:
         volumeMounts:
         - mountPath: /app/wwwroot/upload
           name: file-upload-volume
-      - name: file-sync-sidecar
-        image: alpine:latest
-        command: ["/bin/sh", "-c"]
-        args:
-          - |
-            while true; do
-              cp -ru /app/wwwroot/upload/* /mnt/upload/;
-              sleep 30;
-            done
-        volumeMounts:
-        - mountPath: /mnt/upload
-          name: file-upload-volume
-        - mountPath: /app/wwwroot/upload
-          name: file-upload-volume
       initContainers:
       - name: init-file-upload
-        image: alpine:latest
-        command: ['sh', '-c', 'cp -r /app/wwwroot/upload/* /mnt/upload']
+        image: aravindaravind/fileupload-app:1.0
+        command: ['sh', '-c', 'rsync -au /app/wwwroot/upload/ /mnt/upload/']  # Update command
         volumeMounts:
         - mountPath: /mnt/upload
-          name: file-upload-volume
-        - mountPath: /app/wwwroot/upload
           name: file-upload-volume
       volumes:
       - name: file-upload-volume
