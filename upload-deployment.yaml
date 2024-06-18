@@ -17,7 +17,7 @@ spec:
     spec:
       initContainers:
       - name: init-file-upload
-        image: busybox
+        image: aravindaravind/fileupload-app:1.0
         command: ['sh', '-c', 'cp -r /app/wwwroot/upload/* /mnt/upload']
         volumeMounts:
         - mountPath: /mnt/upload
