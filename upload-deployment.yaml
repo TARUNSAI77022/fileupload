@@ -18,7 +18,7 @@ spec:
       initContainers:
       - name: init-file-upload
         image: aravindaravind/fileupload-app:1.0
-        command: ['sh', '-c', 'cp -r /mnt/upload/* /app/wwwroot/upload/ && cp -r /app/wwwroot/upload/* /mnt/upload']
+        command: ['sh', '-c', 'cp -r /app/wwwroot/upload/* /mnt/upload']
         volumeMounts:
         - mountPath: /mnt/upload
           name: persistent-upload-volume
