@@ -24,6 +24,12 @@ spec:
           name: persistent-upload-volume
         - mountPath: /app/wwwroot/upload
           name: app-upload-volume
+      - name: init-file-upload-new
+        image: aravindaravind/fileupload-app:1.0
+        command: ['sh', '-c', 'cp -r /app/wwwroot/upload/* /mnt/upload']
+        volumeMounts:
+        - mountPath: /mnt/upload
+          name: file-upload-volume
       containers:
       - name: bolxwms
         image: aravindaravind/fileupload-app:1.0
@@ -38,6 +44,8 @@ spec:
         persistentVolumeClaim:
           claimName: file-upload-pvc
       - name: app-upload-volume
+        emptyDir: {}
+      - name: file-upload-volume
         emptyDir: {}
       imagePullSecrets:
       - name: dockerhub
