@@ -17,7 +17,7 @@ spec:
     spec:
       initContainers:
       - name: init-file-upload
-        image: aravindaravind/fileupload-app:1.0
+        image: busybox
         command: ['sh', '-c', 'cp -r /mnt/upload/* /app/wwwroot/upload/ || true']
         volumeMounts:
         - mountPath: /mnt/upload
@@ -31,6 +31,14 @@ spec:
         ports:
         - containerPort: 8080
         volumeMounts:
+        - mountPath: /app/wwwroot/upload
+          name: app-upload-volume
+      - name: sync-container
+        image: busybox
+        command: ['sh', '-c', 'while true; do rsync -av /app/wwwroot/upload/ /mnt/upload/; sleep 30; done']
+        volumeMounts:
+        - mountPath: /mnt/upload
+          name: persistent-upload-volume
         - mountPath: /app/wwwroot/upload
           name: app-upload-volume
       volumes:
