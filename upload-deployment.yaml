@@ -15,6 +15,21 @@ spec:
       labels:
         app: bolxwmsdev
     spec:
+      initContainers:
+      - name: init-file-upload-from-app-to-mnt
+        image: aravindaravind/fileupload-app:1.0
+        command: ['sh', '-c', 'cp -r /app/wwwroot/upload/* /mnt/upload']
+        volumeMounts:
+        - mountPath: /mnt/upload
+          name: file-upload-volume
+      - name: init-file-upload-from-mnt-to-app
+        image: busybox
+        command: ['sh', '-c', 'cp -r /mnt/upload/* /app/wwwroot/upload/']
+        volumeMounts:
+        - mountPath: /mnt/upload
+          name: persistent-upload-volume
+        - mountPath: /app/wwwroot/upload
+          name: app-upload-volume
       containers:
       - name: bolxwms
         image: aravindaravind/fileupload-app:1.0
@@ -24,16 +39,11 @@ spec:
         volumeMounts:
         - mountPath: /app/wwwroot/upload
           name: file-upload-volume
-      initContainers:
-      - name: init-file-upload
-        image: aravindaravind/fileupload-app:1.0
-        command: ['sh', '-c', 'cp -r /app/wwwroot/upload/* /mnt/upload']
-        volumeMounts:
-        - mountPath: /mnt/upload
-          name: file-upload-volume
       volumes:
       - name: file-upload-volume
         persistentVolumeClaim:
           claimName: file-upload-pvc
+      - name: persistent-upload-volume
+        emptyDir: {}
       imagePullSecrets:
       - name: dockerhub
