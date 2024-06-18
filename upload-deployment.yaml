@@ -26,6 +26,7 @@ spec:
           name: file-upload-volume
       - name: file-upload-sidecar
         image: some-sidecar-image:latest
+        imagePullPolicy: Always
         command: ['sh', '-c', 'rsync -au /mnt/upload/ /app/wwwroot/upload']  # Use rsync for efficiency
         volumeMounts:
         - mountPath: /mnt/upload
