@@ -16,7 +16,7 @@ spec:
         app: bolxwmsdev
     spec:
       initContainers:
-        - name: init-file-upload (optional)
+        - name: init-file-upload 
           image: busybox 
           command: cp -r /mnt/upload/* /app/wwwroot/upload/ 
           volumeMounts:
