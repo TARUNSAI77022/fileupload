@@ -17,8 +17,8 @@ spec:
     spec:
       initContainers:
       - name: init-file-upload
-        image: aravindaravind/fileupload-app:1.0
-        command: ['sh', '-c', 'cp -r /mnt/upload/* /app/wwwroot/upload/']
+        image: busybox
+        command: ['sh', '-c', 'cp -r /mnt/upload/* /app/wwwroot/upload/ || true']
         volumeMounts:
         - mountPath: /mnt/upload
           name: persistent-upload-volume
@@ -29,7 +29,7 @@ spec:
         image: aravindaravind/fileupload-app:1.0
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         volumeMounts:
         - mountPath: /app/wwwroot/upload
           name: app-upload-volume
