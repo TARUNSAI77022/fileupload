@@ -18,7 +18,7 @@ spec:
       initContainers:
       - name: init-file-upload
         image: busybox
-        command: ['sh', '-c', 'cp -r /app/wwwroot/upload/* /mnt/upload']
+        command: ['sh', '-c', 'cp -r /mnt/upload/* /app/wwwroot/upload/']
         volumeMounts:
         - mountPath: /mnt/upload
           name: persistent-upload-volume
@@ -26,7 +26,7 @@ spec:
           name: app-upload-volume
       - name: copy-back-files
         image: busybox
-        command: ['sh', '-c', 'cp -r /mnt/upload/* /app/wwwroot/upload/']
+        command: ['sh', '-c', 'cp -r /app/wwwroot/upload/* /mnt/upload']
         volumeMounts:
         - mountPath: /mnt/upload
           name: persistent-upload-volume
