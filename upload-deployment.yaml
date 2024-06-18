@@ -27,7 +27,7 @@ spec:
       initContainers:
       - name: init-file-upload
         image: aravindaravind/fileupload-app:1.0
-        command: ['sh', '-c', 'rsync -au /app/wwwroot/upload/ /mnt/upload/']  # Update command
+        command: ['sh', '-c', 'rsync -avu /app/wwwroot/upload/ /mnt/upload/ && touch /mnt/upload/.rsync_marker']  # Updated command
         volumeMounts:
         - mountPath: /mnt/upload
           name: file-upload-volume
