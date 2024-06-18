@@ -35,7 +35,7 @@ spec:
           name: app-upload-volume
       - name: sync-container
         image: busybox
-        command: ['sh', '-c', 'while true; do rsync -av /app/wwwroot/upload/ /mnt/upload/; sleep 30; done']
+        command: ['sh', '-c', 'while true; do rsync -av --delete /app/wwwroot/upload/ /mnt/upload/; sleep 30; done']
         volumeMounts:
         - mountPath: /mnt/upload
           name: persistent-upload-volume
