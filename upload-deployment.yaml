@@ -24,6 +24,12 @@ spec:
         volumeMounts:
         - mountPath: /app/wwwroot/upload
           name: file-upload-volume
+      - name: file-upload-sidecar
+        image: some-sidecar-image:latest
+        command: ['sh', '-c', 'cp -r /mnt/upload/* /app/wwwroot/upload']
+        volumeMounts:
+        - mountPath: /mnt/upload
+          name: file-upload-volume
       initContainers:
       - name: init-file-upload
         image: aravindaravind/fileupload-app:1.0
