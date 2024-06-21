@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: upload-deployment
-  namespace: bolx
   labels:
     app: bolxwmsdev
 spec:
