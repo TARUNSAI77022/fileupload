@@ -22,3 +22,21 @@ spec:
         - containerPort: 80
       imagePullSecrets:
       - name: dockerhub
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: upload-service
+  labels:
+    app: bolxwmsdev  
+spec:
+  selector:
+    app: bolxwmsdev
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 31003
+  type: NodePort
