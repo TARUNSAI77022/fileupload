@@ -19,6 +19,6 @@ spec:
         image: aravindaravind/fileupload-app:1.0
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080
+        - containerPort: 80
       imagePullSecrets:
       - name: dockerhub
