@@ -9,7 +9,7 @@ spec:
     app: bolxwmsdev
   ports:
     - protocol: TCP
-      port: 8080
+      port: 80
       targetPort: 80
       nodePort: 31003
   type: NodePort
