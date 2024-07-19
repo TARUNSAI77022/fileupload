@@ -32,15 +32,14 @@ spec:
         - containerPort: 80
         volumeMounts:
         - mountPath: /app/wwwroot/upload
-          name: app-upload-volume
+          name: persistent-upload-volume
       volumes:
       - name: persistent-upload-volume
         persistentVolumeClaim:
           claimName: file-upload-pvc
-      - name: app-upload-volume
-        emptyDir: {}
       imagePullSecrets:
       - name: dockerhub
+
 
 
 ---
