@@ -23,7 +23,7 @@ spec:
         - mountPath: /mnt/upload
           name: persistent-upload-volume
         - mountPath: /app/wwwroot/upload
-          name: app-upload-volume
+          name: persistent-upload-volume
       containers:
       - name: bolxwms
         image: aravindaravind/fileupload-app:1.0
